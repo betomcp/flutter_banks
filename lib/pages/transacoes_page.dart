@@ -1,3 +1,4 @@
+import 'package:expense_tracker/pages/detalhes_da_transacao.dart';
 import 'package:expense_tracker/repository/transacoes_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,16 @@ class _TransacoesPageState extends State<TransacoesPage> {
           itemCount: transacoes.length,
           itemBuilder: (context, index) {
             final transacao = transacoes[index];
-            return TransacaoItem(transacao: transacao);
+            return InkWell(
+              onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetalhesDaTransacao(transacao: transacao),
+                ),
+              );
+            },
+            child: TransacaoItem(transacao: transacao));
           },
           separatorBuilder: (context, index) {
             return const Divider();
